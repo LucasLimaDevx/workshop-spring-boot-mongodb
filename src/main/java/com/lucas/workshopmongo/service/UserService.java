@@ -32,16 +32,16 @@ public class UserService {
 	
 	public User update(User obj) {
 		Optional<User> newObj = repo.findById(obj.getId());
-		updateData(newObj.get(), obj);
 		
-		return repo.save(newObj.get());
+		
+		return repo.save(updateData(newObj.get(), obj));
 	}
 	
-	private void updateData(User user, User obj) {
+	private User updateData(User newUser, User obj) {
 		
-		user.setName(obj.getName());
-		user.setEmail(obj.getEmail());
-		
+		newUser.setName(obj.getName());
+		newUser.setEmail(obj.getEmail());
+		return newUser;
 	}
 
 	public void delete(String id) {
